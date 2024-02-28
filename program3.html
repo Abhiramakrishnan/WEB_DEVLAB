@@ -1,0 +1,50 @@
+<html lang="en">
+  <body ng-app="SimpleCalculator" ng-controller="Calculator">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+      angular.module('SimpleCalculator', [])
+        .controller('Calculator', function ($scope) {
+          $scope.result = function () {
+            if ($scope.op == '+') {
+              return parseInt($scope.a) + parseInt($scope.b);
+            } 
+            else if ($scope.op == '-') {
+              return $scope.a - $scope.b;
+            } 
+            else if ($scope.op == '*') {
+              return $scope.a * $scope.b;
+            }
+             else if($scope.op == '/'){
+              return $scope.a / $scope.b;
+            }
+          };
+        });
+    </script>
+
+    <table>
+      <tr>
+        <td>Enter First Number</td>
+        <td><input type="text" ng-model="a"></td>
+      </tr>
+      <tr>
+        <td>Enter Second number</td>
+        <td><input type="text" ng-model="b"></td>
+      </tr>
+      <tr>
+        <td>Choose operation</td>
+        <td>
+          <select ng-model="op">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Result :</td>
+        <td>{{ result() }}</td>
+      </tr>
+    </table>
+  </body>
+</html>

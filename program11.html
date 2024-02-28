@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+    <head>
+        <title>Student Details Converter</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </head>
+    <body>
+        <div ng-controller="StudentController as studentCtr1">
+            <h2>Student Details</h2>
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Roll Number</th>
+                    <th>Class</th>
+                </tr>
+                <tr ng-repeat="student in studentCtr1.students">
+                    <td>{{student.name|uppercase}}</td>
+                    <td>{{student.rollnumber|uppercase}}</td>
+                    <td>{{student.class|uppercase}}</td>
+                    </tr>
+            </table>
+        </div>
+        <script>
+            var app=angular.module('studentApp',[]);
+            app.controller('StudentController',function(){
+                this.students=[{
+                    name:'Abhiram',
+                    rollnumber:'003',
+                    class:'12th'
+                },
+                {
+                    name:'Don Jon',
+                    rollnumber:'004',
+                    class:'11th'
+
+                },
+                {
+                    name:'Rain',
+                    rollnumber:'005',
+                    class:'10th'
+                }
+                ];
+            });
+        </script>
+    </body>
+</html>

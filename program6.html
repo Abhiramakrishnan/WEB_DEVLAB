@@ -1,0 +1,66 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myController">
+        <P>
+
+            Day Name <input type="text" ng-model="day" /> </P>
+
+            <p>
+                Task to do <input type="text" ng-model="do" /> </p>
+                <p><button ng-click="addRow()"> Add Task</button> </p>
+                <table border="10">
+                    <tr>
+                        <th>Day No</th>
+                        <th>Day Name</th>
+                        <th>Task</th>
+                    </tr>
+                    <tr ng-repeat="task in taskArray">
+                        <td><label>{{$index+1}}</label></td>
+                        <td><label>{{task.day}}</label></td>
+                        <td><label>{{task.do}}</label></td>
+                        <td><input type="checkbox" ng-model="task.Remove"/></td>
+                    </tr>
+                </table>
+                <div>
+
+                    <button ng-click="removeRow()">Remove Row</button>
+                </div>
+
+
+<div id="display" style="padding:10px 0;">{{display}}</div>
+</div>
+</body>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myController', function ($scope) {
+$scope.taskArray =
+[
+{ 'day': 'Monday', 'do': 'Lab' },
+{ 'day': 'Tuesday', 'do': 'Theory' }
+];
+$scope.addRow = function () {
+if ($scope.day != undefined && $scope.do != undefined) {
+var task = [];
+task.day = $scope.day;
+task.do = $scope.do;
+$scope.taskArray.push(task);
+$scope.day = null;
+$scope.do = null;
+}
+};
+$scope.removeRow = function () {
+var arrTask = [];
+angular.forEach($scope.taskArray, function (value) {
+if (!value.Remove) {
+arrTask.push(value);
+}
+});
+$scope.taskArray = arrTask;
+};
+});
+</script>
+</html>

@@ -1,0 +1,40 @@
+<html>
+    <title>
+        this is program to compute factorial and square of a given number
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+ <script>
+    var fact = angular.module("findfact",[]);
+    fact.controller("calfact",function($scope){
+        $scope.factorial = function()
+        {
+            var n =$scope.number;
+            var i,f=1;
+            for(i=2;i<=n;i++)
+            {
+                f=f*i;
+            }
+            $scope.res = f;
+            $scope.sq = n*n;
+        }
+    });
+ </script>
+ <body ng-app="findfact" ng-controller="calfact">
+    <table border = "1">
+        <tr>
+            <td>enter a number:</td>
+            <td><input type="text"ng-model="number"></td>input></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="button" ng-click="factorial()" value="findfact"></input></td>
+        </tr>
+        <tr>
+            <td>the factorial of the number<span ng-blind="number"></span> is =</td>
+            <td>{{res}}</td>
+        </tr>
+        <tr>
+            <td>the square of the number:<span ng- blind="number"></span> is = </td>
+            <td>{{sq}}</td>
+        </tr>
+    </table>
+</html>

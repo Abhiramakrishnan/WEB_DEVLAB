@@ -1,0 +1,28 @@
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        angular.module('myApp',[]).controller('myController',function($scope)
+        {
+            $scope.myarray =[
+                {"Student Name":"Rahul","USN":100,"CGPA":7.9},
+                {"Student Name":"Priya","USN":101,"CGPA":9.8},
+                {"Student Name":"Amar","USN":104,"CGPA":8.6},
+                {"Student Name":"Mohan","USN":105,"CGPA":8.0}
+            ];
+        });
+        angular.element(document).ready(function()
+        {
+            angular.bootstrap(document,['myApp'])
+        });
+    </script>
+    <table ng-controller="myController" border="1">
+        <tr>
+            <th ng-repeat="(key,val) in myarray[0]">{{key}}</th>
+        </tr>
+        <tr ng-repeat="row in myarray">
+            <td ng-repeat="column in row">
+            {{column}}
+        </td>
+        </tr>
+        </table>
+</html>

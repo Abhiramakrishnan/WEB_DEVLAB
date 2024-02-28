@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="loginApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoginForm</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body{
+            font-family: Arial, Sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form{
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
+        }
+        input{
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button{
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="loginController">
+        <form ng-submit="login()">
+            <h2>Login Form</h2>
+            <label for="username">Username</label>
+            <input type="text" id="username" ng-model="user.username" ng-pattern="/^[a-zA-Z0-9_]*$/" required>
+            <div ng-show="loginForm.username.$dirty && loginForm.username.$error.pattern">
+                <span style="color: red;">Username can only contain letters, numbers and underscores.</span>
+            </div>
+            <label for="password">password</label>
+            <input type="password" id="password" ng-model="user.password"required>
+            <div ng-show="loginForm.password.$dirty && loginForm.password.$error.required">
+                <span style="color: pink;">password is required.</span>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        var app=angular.module('loginApp',[]);
+        app.controller('loginController',function($scope){
+            $scope.user={};
+            $scope.login=function(){
+                console.log('Logging in with:',$scope.user);
+            };
+        });
+    </script>
+</body>
+</html>

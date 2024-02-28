@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app = "ShoppingApp">
+    <head>
+        <title>Shopping list app</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    </head>
+    <body>
+        <div ng-controller="ShoppingController">
+            <h2>Shopping List</h2>
+            <ul>
+                <li ng-repeat="item in items">
+                    {{item.name}} - {{item.Price | currency}}
+                    <button ng-click="removeItem(item)">Remove</button>
+                </li>
+            </ul>
+            <form ng-submit = "addItem()">
+                <label for="ItemName">Item Name:</label>
+                <input type="text" id="ItemName" ng-model = "newItemName" required>
+                <label for="ItemPrice">ItemPrice:</label>
+                <input type="number" id="ItemPrice" ng-model ="newItemPrice" required>
+                <button type="submit">Add Item</button>
+            </form>
+        </div>
+        <script>
+            var app = angular.module('ShoppingApp',[]);
+            app.controller('ShoppingController',function($scope){
+                $scope.items=[
+                    {name:'Item1', Price: 10},
+                    {name:'Item2', Price: 20},
+                    {name:'Item1', Price: 30}
+                ];
+                $scope.addItem = function(){
+                    if($scope.newItemName && $scope.newItemPrice){
+                        $scope.items.push({
+                            name:$scope.newItemName,
+                            Price:$scope.newItemPrice
+                        });
+                        $scope.newItemName='';
+                        $scope.newItemPrice='';
+                    }
+                };
+                $scope.removeItem = function (item) {
+                var index = $scope.items.indexOf(item);
+                if (index !== -1) {
+                    $scope.items.splice(index, 1);
+                    }
+                };
+            });
+        </script>
+    </body>
+
+</html>
